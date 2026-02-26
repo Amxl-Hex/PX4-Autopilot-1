@@ -50,7 +50,6 @@ extern "C" __EXPORT int remaining_range_main(int argc, char *argv[]);
 
 int remaining_range_main(int argc, char *argv[])
 {
-    // For now, just a simple print to test if it's found
     PX4_INFO("Remaining Range Module is running!");
     return 0;
 }
