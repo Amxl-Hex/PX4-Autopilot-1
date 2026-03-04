@@ -239,6 +239,10 @@ void Navigator::run()
 		_position_controller_status_sub.update();
 		_home_pos_sub.update(&_home_pos);
 
+		//user added
+		calc_remaining_range();
+		//end user added
+
 		// Handle Vehicle commands
 		int vehicle_command_updates = 0;
 
@@ -1657,6 +1661,29 @@ void Navigator::activate_set_gimbal_neutral_timer(const hrt_abstime timestamp)
 		_gimbal_neutral_activation_time = timestamp;
 	}
 }
+
+//user added
+void Navigator::calc_remaining_range()
+{
+    battery_status_s bat;
+
+    // Navigator already has a member _land_detected updated via _land_detected_sub
+    if (_battery_status_sub.update(&bat)) {
+        if (!_land_detected.landed) {
+            // Your logic: (percentage * 100) * 100
+            _remaining_range_m = (bat.remaining * 100.0f) * 100.0f;
+
+            // Throttle logging to once per second
+            static hrt_abstime last_print = 0;
+            if (hrt_elapsed_time(&last_print) > 1_s) {
+                PX4_INFO("Remaining range = %.1f m", (double)_remaining_range_m);
+                last_print = hrt_absolute_time();
+            }
+        }
+    }
+}
+//end user added
+
 
 void Navigator::neutralize_gimbal_if_control_activated()
 {
