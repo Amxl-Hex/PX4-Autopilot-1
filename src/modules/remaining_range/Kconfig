@@ -1,0 +1,5 @@
+menuconfig MODULES_REMAINING_RANGE
+	bool "remaining_range"
+	default n
+	---help---
+		Enable support for remaining_range

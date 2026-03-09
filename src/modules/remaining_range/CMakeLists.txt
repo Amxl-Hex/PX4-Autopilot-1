@@ -1,9 +1,11 @@
 px4_add_module(
 	MODULE modules__remaining_range
-	MAIN remaining_range
-	STACK_MAIN 2000
+	MAIN range_calculation
+	COMPILE_FLAGS
+		#-DDEBUG_BUILD
 	SRCS
-		remaining_range.cpp
+		range_calculation.cpp
+		range_calculation.hpp
 	DEPENDS
-		px4_config
+		px4_work_queue
 	)

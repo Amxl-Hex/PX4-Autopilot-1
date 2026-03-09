@@ -6,7 +6,7 @@
  * modification, are permitted provided that the following conditions
  * are met:
  *
- * 1. Redistributions of source code must retain the above copyright
+ * 1. Redistributions of source code must retainternal_combustion_engine_controlin the above copyright
  *    notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -37,7 +37,7 @@
 
 using namespace time_literals;
 
-namespace internal_combustion_engine_control
+namespace
 {
 
 ModuleBase::Descriptor InternalCombustionEngineControl::desc{task_spawn, custom_command, print_usage};
