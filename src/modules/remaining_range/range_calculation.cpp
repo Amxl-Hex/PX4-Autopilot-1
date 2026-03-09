@@ -63,7 +63,10 @@ namespace remaining_range
 		}
 
 		PRINT_MODULE_DESCRIPTION(
-
+			R"DESCR_STR(
+		### Description
+		Module to calculate the remaining flight range based on current battery levels.
+		)DESCR_STR"
 		);
 		PRINT_MODULE_USAGE_NAME("remaining_range", "system");
 		PRINT_MODULE_USAGE_COMMAND("start");
