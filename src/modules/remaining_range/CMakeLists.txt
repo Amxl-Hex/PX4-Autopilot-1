@@ -1,6 +1,6 @@
 px4_add_module(
 	MODULE modules__remaining_range
-	MAIN range_calculation
+	MAIN remaining_range
 	COMPILE_FLAGS
 		#-DDEBUG_BUILD
 	SRCS

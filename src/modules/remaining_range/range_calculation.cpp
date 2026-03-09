@@ -17,7 +17,7 @@ namespace remaining_range
 
 	}
 
-	int RangeCalculation::task_spawn(int argc, char *argv[])
+	int RangeCalculation::task_spawn(int argc, nullptr, char *argv[])
 	{
 		RangeCalculation *obj = new RangeCalculation();
 
@@ -54,5 +54,26 @@ namespace remaining_range
 			float remaining_range = battery_status.remaining * MAX_RANGE_M;
 			PX4_INFO("Remaining range: %.2f meters", (double)remaining_range);
 		}
+	}
+
+	int RangeCalculation::print_usage(const char *reason)
+	{
+		if (reason) {
+			PX4_ERR("%s\n", reason);
+		}
+
+		PRINT_MODULE_DESCRIPTION(
+
+		);
+		PRINT_MODULE_USAGE_NAME("remaining_range", "system");
+		PRINT_MODULE_USAGE_COMMAND("start");
+		PRINT_MODULE_USAGE_DEFAULT_COMMANDS();
+		return 0;
+	}
+
+
+	extern "C" __EXPORT int remaining_range_main(int argc, char *argv[])
+	{
+		return ModuleBase::main(RangeCalculation::desc, argc, argv);
 	}
 }
