@@ -475,6 +475,8 @@ else
 	else
 		commander start
 
+		remaining_range start
+
 		dshot start
 		pwm_out start
 	fi
