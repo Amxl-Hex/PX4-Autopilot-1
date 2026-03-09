@@ -4,7 +4,7 @@ using namespace time_literals;
 
 namespace remaining_range
 {
-	ModuleBase::Descriptor RangeCalculation::desc{task_spawn, print_usage};
+	ModuleBase::Descriptor RangeCalculation::desc{task_spawn, nullptr, print_usage};
 
 	RangeCalculation::RangeCalculation() :
 		ScheduledWorkItem(MODULE_NAME, px4::wq_configurations::lp_default)
@@ -17,7 +17,7 @@ namespace remaining_range
 
 	}
 
-	int RangeCalculation::task_spawn(int argc, nullptr, char *argv[])
+	int RangeCalculation::task_spawn(int argc, char *argv[])
 	{
 		RangeCalculation *obj = new RangeCalculation();
 
