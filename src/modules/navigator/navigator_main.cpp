@@ -240,7 +240,7 @@ void Navigator::run()
 		_home_pos_sub.update(&_home_pos);
 
 		//user added
-		calc_remaining_range();
+
 		//end user added
 
 		// Handle Vehicle commands
@@ -1670,7 +1670,7 @@ void Navigator::activate_set_gimbal_neutral_timer(const hrt_abstime timestamp)
 }
 
 //user added
-void Navigator::calc_remaining_range()
+/*void Navigator::calc_remaining_range()
 {
     battery_status_s bat;
 
@@ -1688,7 +1688,7 @@ void Navigator::calc_remaining_range()
             }
         }
     }
-}
+}*/
 //end user added
 
 
