@@ -56,6 +56,7 @@ namespace remaining_range
 
 
 			range_calculation_s range_calc;
+			range_calc.timestamp = hrt_absolute_time();
 			range_calc.remaining_range_m = remaining_range;
 			_range_calculation_pub.publish(range_calc);
 		}
