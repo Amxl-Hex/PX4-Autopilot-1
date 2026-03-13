@@ -9,7 +9,7 @@ namespace remaining_range
 	RangeCalculation::RangeCalculation() :
 		ScheduledWorkItem(MODULE_NAME, px4::wq_configurations::lp_default)
 	{
-
+		_range_calculation_pub.advertise();
 	}
 
 	RangeCalculation::~RangeCalculation()
@@ -52,7 +52,12 @@ namespace remaining_range
 			_bat_sub.copy(&battery_status);
 
 			float remaining_range = battery_status.remaining * MAX_RANGE_M;
-			PX4_INFO("Remaining range: %.2f meters", (double)remaining_range);
+			//PX4_INFO("Estimated range: %.2f m", remaining_range);
+
+
+			range_calculation_s range_calc;
+			range_calc.remaining_range_m = remaining_range;
+			_range_calculation_pub.publish(range_calc);
 		}
 	}
 
