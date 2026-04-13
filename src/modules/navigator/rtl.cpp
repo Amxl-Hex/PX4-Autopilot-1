@@ -563,12 +563,12 @@ void RTL::findRtlDestination(DestinationType &destination_type, PositionYawSetpo
 	if(_range_calculation_sub.updated()) {
 		range_calculation_s range_calculation;
 		_range_calculation_sub.copy(&range_calculation);
-		if(min_dist < range_calculation.remaining_range_m) {
+		if(min_dist > range_calculation.remaining_range_m) {
 			/*destination.lat = range_calculation.lat;
 			destination.lon = range_calculation.lon;
 			destination.alt = ;
 			destination_type = DestinationType::DESTINATION_TYPE_SAFE_POINT;*/
-			PX4_INFO("Minimum distance < Remaining range");
+			PX4_INFO("Minimum distance > Remaining range");
 		}
 	}
 	//user defined end
