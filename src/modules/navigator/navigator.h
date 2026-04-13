@@ -318,10 +318,8 @@ private:
 	int _vehicle_status_sub{-1};
 
 	// user added
-	/*uORB::Subscription _battery_status_sub{ORB_ID(battery_status)};
-    	float _remaining_range_m{0.0f};
 
-    	void calc_remaining_range();*/
+
 	// end user added
 
 	uORB::SubscriptionData<position_controller_status_s>	_position_controller_status_sub{ORB_ID(position_controller_status)};

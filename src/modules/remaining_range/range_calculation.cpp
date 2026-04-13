@@ -42,6 +42,8 @@ namespace remaining_range
 
 	void RangeCalculation::Run()
 	{
+		float remaining_range = 0.0f;
+
 		if (should_exit()) {
 			ScheduleClear();
 			exit_and_cleanup(desc);
@@ -51,10 +53,10 @@ namespace remaining_range
 			battery_status_s battery_status;
 			_bat_sub.copy(&battery_status);
 
-			float remaining_range = battery_status.remaining * MAX_RANGE_M;
+			remaining_range = battery_status.remaining * MAX_RANGE_M;
 			//PX4_INFO("Estimated range: %.2f m", remaining_range);
 
-
+			// Publish the remaining range to msg\RangeCalculation.msg
 			range_calculation_s range_calc;
 			range_calc.timestamp = hrt_absolute_time();
 			range_calc.remaining_range_m = remaining_range;

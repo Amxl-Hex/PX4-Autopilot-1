@@ -63,6 +63,8 @@
 #include <uORB/topics/rtl_time_estimate.h>
 #include <uORB/topics/telemetry_status.h>
 
+#include <uORB/topics/range_calculation.h>
+
 class Navigator;
 
 class RTL : public NavigatorMode, public ModuleParams
@@ -257,4 +259,8 @@ private:
 
 	uORB::Publication<rtl_time_estimate_s> _rtl_time_estimate_pub{ORB_ID(rtl_time_estimate)};
 	uORB::Publication<rtl_status_s> _rtl_status_pub{ORB_ID(rtl_status)};
+
+	//user defined start
+	uORB::Subscription _range_calculation_sub{ORB_ID(range_calculation)};
+	//user defined end
 };
