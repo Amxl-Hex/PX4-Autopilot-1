@@ -460,18 +460,19 @@ PositionYawSetpoint RTL::findClosestSafePoint(float min_dist, uint8_t &safe_poin
 					safe_point = safepoint_position;
 					safe_point_index = current_seq;
 
+
 					//user defined start
-					if(_range_calculation_sub.updated()) {
+					/*if(_range_calculation_sub.updated()) {
 						range_calculation_s range_calculation;
 						_range_calculation_sub.copy(&range_calculation);
-						if(min_dist > range_calculation.remaining_range_m) {
-							/*destination.lat = range_calculation.lat;
+						if(range_calculation.remaining_range_m + 1000 < min_dist) {
+							destination.lat = range_calculation.lat;
 							destination.lon = range_calculation.lon;
-							destination.alt = ;
-							destination_type = DestinationType::DESTINATION_TYPE_SAFE_POINT;*/
+							destination.alt = range_calculation.alt;
+							destination_type = DestinationType::DESTINATION_TYPE_SAFE_POINT;
 							PX4_INFO("Minimum distance > Remaining range, %.2f > %.2f", (double)min_dist, (double)range_calculation.remaining_range_m);
 						}
-					}
+					}*/
 					//user defined end
 				}
 			}
@@ -573,7 +574,14 @@ void RTL::findRtlDestination(DestinationType &destination_type, PositionYawSetpo
 	}
 
 	//user defined start
-
+	const float distance_to_nearest_safepoint = get_distance_to_next_waypoint(_global_pos_sub.get().lat, _global_pos_sub.get().lon, destination.lat, destination.lon);
+	if(_range_calculation_sub.updated()) {
+		range_calculation_s range_calculation;
+		_range_calculation_sub.copy(&range_calculation);
+		if(range_calculation.remaining_range_m - 1000 < distance_to_nearest_safepoint) {
+			PX4_INFO("Minimum distance > Remaining range, %.2f > %.2f", (double)distance_to_nearest_safepoint, (double)range_calculation.remaining_range_m);
+		}
+	}
 	//user defined end
 }
 
