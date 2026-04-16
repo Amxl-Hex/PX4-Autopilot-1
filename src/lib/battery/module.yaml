@@ -134,11 +134,11 @@ parameters:
                     This has to be higher than the critical threshold.
             type: float
             unit: norm
-            min: 0.12
+            min: 0.07
             max: 0.5
             decimal: 2
             increment: 0.01
-            default: 0.15
+            default: 0.07
 
         BAT_CRIT_THR:
             description:
@@ -149,11 +149,11 @@ parameters:
                     will trigger RTL.
             type: float
             unit: norm
-            min: 0.05
+            min: 0.01
             max: 0.5
             decimal: 2
             increment: 0.01
-            default: 0.07
+            default: 0.01
 
         BAT_EMERGEN_THR:
             description:
@@ -164,11 +164,11 @@ parameters:
                     will trigger landing.
             type: float
             unit: norm
-            min: 0.03
+            min: 0.01
             max: 0.5
             decimal: 2
             increment: 0.01
-            default: 0.05
+            default: 0.03
 
         BAT_AVRG_CURRENT:
             description:

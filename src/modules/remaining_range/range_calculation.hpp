@@ -39,7 +39,7 @@ private:
     //uORB::Subscription _global_pos_sub{ORB_ID(vehicle_global_position)};
     //uORB::Subscription _rtl_status_sub{ORB_ID(rtl_status)};
     uORB::Publication<range_calculation_s> _range_calculation_pub{ORB_ID(range_calculation)};
-    static constexpr float MAX_RANGE_M = 10000.0f; // Max range in meters for 100% battery
+    static constexpr float MAX_RANGE_M = 2000.0f; // Max range in meters for 100% battery
 };
 
 } // namespace remaining_range

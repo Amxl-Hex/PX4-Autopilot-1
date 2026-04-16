@@ -579,7 +579,13 @@ void RTL::findRtlDestination(DestinationType &destination_type, PositionYawSetpo
 		range_calculation_s range_calculation;
 		_range_calculation_sub.copy(&range_calculation);
 		if(range_calculation.remaining_range_m - 1000 < distance_to_nearest_safepoint) {
-			PX4_INFO("Minimum distance > Remaining range, %.2f > %.2f", (double)distance_to_nearest_safepoint, (double)range_calculation.remaining_range_m);
+			vehicle_status_s vehicle_status = _vehicle_status_sub.get();
+			if(vehicle_status.nav_state != vehicle_status_s::NAVIGATION_STATE_AUTO_RTL) {
+				vehicle_status.nav_state = vehicle_status_s::NAVIGATION_STATE_AUTO_RTL;
+				_vehicle_status_sub.publish(vehicle_status);
+				PX4_INFO("Switching to RTL due to low remaining range");
+			}
+			PX4_WARN("Minimum distance > Remaining range, %.2f > %.2f", (double)distance_to_nearest_safepoint, (double)range_calculation.remaining_range_m);
 		}
 	}
 	//user defined end

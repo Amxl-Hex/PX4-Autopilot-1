@@ -63,7 +63,10 @@
 #include <uORB/topics/rtl_time_estimate.h>
 #include <uORB/topics/telemetry_status.h>
 
+//user defined start
 #include <uORB/topics/range_calculation.h>
+#include <uORB/topics/vehicle_status.h>
+//user defined end
 
 class Navigator;
 
