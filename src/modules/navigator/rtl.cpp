@@ -581,9 +581,12 @@ void RTL::findRtlDestination(DestinationType &destination_type, PositionYawSetpo
 		if(range_calculation.remaining_range_m - 1000 < distance_to_nearest_safepoint) {
 			vehicle_status_s vehicle_status = _vehicle_status_sub.get();
 			if(vehicle_status.nav_state != vehicle_status_s::NAVIGATION_STATE_AUTO_RTL) {
-				vehicle_status.nav_state = vehicle_status_s::NAVIGATION_STATE_AUTO_RTL;
-				_vehicle_status_sub.publish(vehicle_status);
-				PX4_INFO("Switching to RTL due to low remaining range");
+				vehicle_command_s vcmd{};
+				vcmd.timestamp = hrt_absolute_time();
+				vcmd.command = vehicle_command_s::VEHICLE_CMD_NAV_RETURN_TO_LAUNCH;
+				vcmd.target_system = vehicle_status.system_id;
+				vcmd.target_component = vehicle_status.component_id;
+				_vehicle_command_pub.publish(vcmd);
 			}
 			PX4_WARN("Minimum distance > Remaining range, %.2f > %.2f", (double)distance_to_nearest_safepoint, (double)range_calculation.remaining_range_m);
 		}
