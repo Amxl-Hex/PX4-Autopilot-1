@@ -266,6 +266,6 @@ private:
 
 	//user defined start
 	uORB::Subscription _range_calculation_sub{ORB_ID(range_calculation)};
-	uORB::Publication<vehicle_command_s> _vehicle_command_pub{ORB_ID(vehicle_command)};
+	uORB::Publication<vehicle_command_s> _vehicle_command_pub{ORB_ID(vehicle_command)}; 
 	//user defined end
 };
