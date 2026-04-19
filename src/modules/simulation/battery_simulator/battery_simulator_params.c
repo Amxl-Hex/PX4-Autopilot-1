@@ -53,7 +53,7 @@ PARAM_DEFINE_INT32(SIM_BAT_ENABLE, 1);
  *
  * @group SITL
  */
-PARAM_DEFINE_FLOAT(SIM_BAT_DRAIN, 100.0f);
+PARAM_DEFINE_FLOAT(SIM_BAT_DRAIN, 200.0f);
 
 /**
  * Simulator Battery minimal percentage.
