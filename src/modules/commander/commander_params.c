@@ -297,7 +297,7 @@ PARAM_DEFINE_INT32(COM_LOW_BAT_ACT, 0);
  * @max 25.0
  * @decimal 1
  */
-PARAM_DEFINE_FLOAT(COM_FAIL_ACT_T, 5.f);
+PARAM_DEFINE_FLOAT(COM_FAIL_ACT_T, 2.f);
 
 /**
  * Imbalanced propeller failsafe mode

@@ -578,7 +578,7 @@ void RTL::findRtlDestination(DestinationType &destination_type, PositionYawSetpo
 	if(_range_calculation_sub.updated()) {
 		range_calculation_s range_calculation;
 		_range_calculation_sub.copy(&range_calculation);
-		if(range_calculation.remaining_range_m - 1000 < distance_to_nearest_safepoint) {
+		if(range_calculation.remaining_range_m < (distance_to_nearest_safepoint + 200)) {
 			vehicle_status_s vehicle_status = _vehicle_status_sub.get();
 			if(vehicle_status.nav_state != vehicle_status_s::NAVIGATION_STATE_AUTO_RTL) {
 				vehicle_command_s vcmd{};
